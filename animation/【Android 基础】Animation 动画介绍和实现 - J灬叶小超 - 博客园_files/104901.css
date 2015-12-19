@@ -1,0 +1,220 @@
+#div_show
+{
+    height: 400px;
+    left: 80px;
+    position: fixed;
+    top: 88px;
+    width: 1180px;
+    z-index: 2000;
+    display: none;
+}
+.div_show_title
+{
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#12a3f4',endColorstr='#0e86c9',GradientType=0);
+    clear: both;
+    display: block;
+    background: rgb(14,134,201);
+    color: #FFFFFF;
+    font-weight: 700;
+    position: relative;
+    height: 30px;
+    width: 100%;
+}
+.div_show_font
+{
+    color: #FFFFFF;
+    float: left;
+    font-weight: 700;
+    margin: 0.4em 0 0.4em 10px;
+}
+.div_show_btn
+{
+    float: right;
+    margin: 0.4em 10px 0.4em 0;
+}
+#div_hotelmap
+{
+    height: 360px;
+    border: 5px solid white;
+    width: 1170px;
+}
+#hotelmap
+{
+    display: inline-block;
+    height: 200px;
+    margin-right: 10px;
+    overflow: hidden;
+    width: 298px;
+}
+.div_address
+{
+    line-height: 20px;
+    font-family: Tahoma,simsun;
+    font-size: 12px;
+}
+.div_address a
+{
+    border-style: none;
+    color: #1D85E2;
+    text-decoration: none;
+}
+.div_address a:hover
+{
+    text-decoration: underline;
+}
+.pic_text
+{
+    color: Red;
+}
+.pic_label
+{
+    color: Gray;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+.pic_image
+{
+    height: 200px;
+    margin: 5px;
+    width: 200px;
+}
+.picshow
+{
+    width: 200px;
+    height: 200px;
+}
+#pic_upload
+{
+    background-color: #000000;
+    height: 25px;
+    left: 0;
+    margin: 2px;
+    opacity: 0;
+    top: 0;
+    width: 100px;
+}
+.file_div
+{
+    border: 1px solid#CCCCCC;
+    height: 25px;
+    line-height: 25px;
+    text-align: center;
+    width: 125px;
+}
+.file_div > span
+{
+    left: 240px;
+    position: absolute;
+}
+#home
+{
+    margin: 0 auto;
+    width: 90%;
+}
+#main #mainContent
+{
+    width: 72%;
+}
+
+
+body > a {
+   background-image:url("http://ctc.i.gtimg.cn/qzone/space_item/orig/4/107444_top.jpg") !important;
+    background-position: center top;
+    background-repeat: no-repeat;
+    display: block;
+    height: 275px;
+    position: absolute;
+    width: 100%;
+    z-index: -100;
+}
+
+html > body {
+     background-image:url("http://ctc.i.gtimg.cn/qzone/space_item/orig/4/107444_bg1.png");
+    background-repeat: repeat;
+}
+#header #blogTitle
+{
+    height: 215px;
+}
+#home #header
+{
+    margin-top: 0;
+}
+#header #navigator
+{
+    margin-top: 0;
+    background: none;
+    border: medium none;
+}
+#home #footer
+{
+    color: #000000;
+}
+.catListEssay,.catListFeedback,.catListLink,.catListImageCategory,.catListPostArchive,.catListTag
+{
+    display: none;
+}
+#main,#mainContent,.CalTitle,.catListEssay h3, .catListLink h3, .catListNoteBook h3, .catListTag h3, .catListPostCategory h3, .catListPostArchive h3, .catListArticleArchive h3, .catListImageCategory h3, .mySearch h3, .catListComment h3, .catListView h3, .catListFeedback h3, #blog-sidecolumn .catListTitle ,.newsItem .catListTitle{
+    background: none repeat scroll 0 0 rgba(0, 0, 0, 0);
+}
+
+
+#home {
+    width: 100%;
+}
+#header #navigator{background-image: url("http://ctc.i.gtimg.cn/qzone/space_item/orig/4/107444_menu_bg.png"); border: medium none;
+}
+
+@media screen and (max-width: 980px) {
+    #sideBar {
+        display: none !important;
+    }
+
+    #main #mainContent {
+        width: 100% !important;
+    }
+    
+    #goup {
+        display: none !important;
+    }
+
+    #main {
+        min-width: 0;
+        margin: 0;
+        width: auto !important;
+    }
+
+    .postDesc {
+        display: none !important;
+    }
+
+    .day {
+        margin: 0 !important;
+    }
+
+    .postTitle {
+        padding: 5px !important;
+    }
+
+    #footer {
+        display: none !important;
+    }
+
+    #blogTitle h1 {
+        width: auto;
+    }
+
+
+    .dayTitle {
+        display: none;
+    }
+
+    #navigator {
+        float: left;
+        height: auto;
+    }
+
+    blogStats {
+        margin-top: 0;
+    }
+}

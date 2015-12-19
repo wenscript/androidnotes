@@ -1,0 +1,2 @@
+## Bitmap和BitmapFactory
+> Bitmap代表一张位图，位图是点阵图像，由多个像素组成，Bitmap提供了一些静态方法来创建新的Bitmap对象，有如下常用方法：createBitmap()、createScaledBitmap()方法。另外还有一个BitampFactory工具类，它的这些方法，可用于从不同的数据源来解析、创建Bitmap对象。包含如下方法：decodeByteArray(byte[] data,int offset,int lenght),decodeFile(),decodeResource,decodeStream

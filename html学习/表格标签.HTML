@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="gb2312">
+  <meta name="Generator" content="EditPlus?">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <title>表格标签</title>
+ </head>
+ <body>
+ 	<table border="1" width="500" height="500" align="center" cellpadding="20" cellspacing="10"
+ 	bordercolordark="red" bordercolorlight="green" bgcolor="#ffcccc" background="images/1.jpg" dir="rtl">
+ 	<caption>学员信息</caption>
+ 	<thead>
+ 	<tr><!-- 一个加粗的td
+ 	写不写thead、tbody、tfoot的区别在于1、写了浏览器就会按照head、body、foot的顺序进行解析2、写了就能边传输边显示 -->
+ 	<th>姓名</th>
+ 	<th>年龄</th>
+ 	<th>性别</th>
+ 	<th>地址</th>
+ 	</tr>
+ 	</thead>
+ 	<tbody>
+ 	<tr bgcolor="#00cc00">
+ 	<td bgcolor="red">刘德华</td>
+ 	<td align="center">51</td>
+ 	<td valign="middle">男</td>
+ 	<td>香港</td>
+ 	</tr>
+ 	<tr>
+ 	<td rowspan="2">成龙章子怡</td>
+ 	<td>50</td>
+ 	<td>男</td>
+ 	<td>香港</td>
+ 	</tr>
+ 	</tbody>
+ 	<tfoot>
+ 	<tr>
+ 	<td>35</td>
+ 	<td colspan="2">女北京</td>
+ 	</tr>
+ 	</tfoot>
+ 	</table>
+ </body>
+</html>

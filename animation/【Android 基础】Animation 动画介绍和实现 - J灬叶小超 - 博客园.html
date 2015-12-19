@@ -1,0 +1,975 @@
+<!DOCTYPE html>
+<!-- saved from url=(0050)http://www.cnblogs.com/yc-755909659/p/4290114.html -->
+<html lang="zh-cn"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<title>【Android 基础】Animation 动画介绍和实现 - J灬叶小超 - 博客园</title>
+<link type="text/css" rel="stylesheet" href="./【Android 基础】Animation 动画介绍和实现 - J灬叶小超 - 博客园_files/blog-common.css">
+<link id="MainCss" type="text/css" rel="stylesheet" href="./【Android 基础】Animation 动画介绍和实现 - J灬叶小超 - 博客园_files/bundle-BlackLowKey.css">
+<link type="text/css" rel="stylesheet" href="./【Android 基础】Animation 动画介绍和实现 - J灬叶小超 - 博客园_files/104901.css">
+<link title="RSS" type="application/rss+xml" rel="alternate" href="http://www.cnblogs.com/yc-755909659/rss">
+<link title="RSD" type="application/rsd+xml" rel="EditURI" href="http://www.cnblogs.com/yc-755909659/rsd.xml">
+<link type="application/wlwmanifest+xml" rel="wlwmanifest" href="http://www.cnblogs.com/yc-755909659/wlwmanifest.xml">
+<script type="text/javascript" src="./【Android 基础】Animation 动画介绍和实现 - J灬叶小超 - 博客园_files/encoder.js"></script><script src="./【Android 基础】Animation 动画介绍和实现 - J灬叶小超 - 博客园_files/jquery.js" type="text/javascript"></script>  
+<script type="text/javascript">var currentBlogApp = 'yc-755909659', cb_enable_mathjax=false;</script>
+<script src="./【Android 基础】Animation 动画介绍和实现 - J灬叶小超 - 博客园_files/blog-common.js" type="text/javascript"></script>
+</head>
+<body>
+<a name="top"></a>
+
+<!--done-->
+<div id="home">
+<div id="header">
+	<div id="blogTitle">
+	<a id="lnkBlogLogo" href="http://www.cnblogs.com/yc-755909659/"><img id="blogLogo" src="./【Android 基础】Animation 动画介绍和实现 - J灬叶小超 - 博客园_files/logo.gif" alt="返回主页"></a>			
+		
+<!--done-->
+<h1><a id="Header1_HeaderTitle" class="headermaintitle" href="http://www.cnblogs.com/yc-755909659/">少年，向着阳光奔跑吧！</a></h1>
+<h2>你没有必要刻意去追逐幸福，只要你抬起头往前走，幸福就会一直跟着你。</h2>
+
+
+
+		
+	</div><!--end: blogTitle 博客的标题和副标题 -->
+	<div id="navigator">
+		
+<ul id="navList">
+<li><a id="MyLinks1_HomeLink" class="menu" href="http://www.cnblogs.com/">博客园</a></li>
+<li><a id="MyLinks1_MyHomeLink" class="menu" href="http://www.cnblogs.com/yc-755909659/">首页</a></li>
+<li><a id="MyLinks1_NewPostLink" class="menu" rel="nofollow" href="http://i.cnblogs.com/EditPosts.aspx?opt=1">新随笔</a></li>
+<li><a id="MyLinks1_ContactLink" class="menu" rel="nofollow" href="http://msg.cnblogs.com/send/J%E7%81%AC%E5%8F%B6%E5%B0%8F%E8%B6%85">联系</a></li>
+<li><a id="MyLinks1_Syndication" class="menu" href="http://www.cnblogs.com/yc-755909659/rss">订阅</a>
+<!--<a id="MyLinks1_XMLLink" class="aHeaderXML" href="http://www.cnblogs.com/yc-755909659/rss"><img src="http://www.cnblogs.com/images/xml.gif" alt="订阅" /></a>--></li>
+<li><a id="MyLinks1_Admin" class="menu" rel="nofollow" href="http://i.cnblogs.com/">管理</a></li>
+</ul>
+		<div class="blogStats">
+			
+			
+<!--done-->
+随笔- 138&nbsp;
+文章- 0&nbsp;
+评论- 151&nbsp;
+
+			
+		</div><!--end: blogStats -->
+	</div><!--end: navigator 博客导航栏 -->
+</div><!--end: header 头部 -->
+
+<div id="main">
+	<div id="mainContent">
+	<div class="forFlow">
+		
+<div id="post_detail">
+<!--done-->
+<div id="topics">
+	<div class="post">
+		<h1 class="postTitle">
+			<a id="cb_post_title_url" class="postTitle2" href="./【Android 基础】Animation 动画介绍和实现 - J灬叶小超 - 博客园_files/【Android 基础】Animation 动画介绍和实现 - J灬叶小超 - 博客园.html" style="padding-left: 0px;">【Android 基础】Animation 动画介绍和实现</a>
+		</h1>
+		<div class="clear"></div>
+		<div class="postBody">
+			<div id="cnblogs_post_body"><p style="text-align: left;">在前面<a href="http://www.cnblogs.com/yc-755909659/p/4288864.html" target="_blank"><span style="color: #3366ff;"> PopupWindow 实现显示仿腾讯新闻底部弹出菜单</span>&nbsp;</a>有用到Animation动画效果来实现菜单的显示和隐藏，本文就来介绍下吧。</p>
+<p style="text-align: left;"><strong>1.Animation 动画类型</strong></p>
+<p style="text-align: left;">Android的animation由四种类型组成：</p>
+<p style="text-align: left;">XML中</p>
+<table style="float: left; width: 370px; height: 109px;" border="0" cellspacing="0" cellpadding="0">
+<tbody>
+<tr>
+<td class="xl65" width="118" height="18">alph</td>
+<td class="xl65" width="222">渐变透明度动画效果</td>
+</tr>
+<tr>
+<td class="xl65" height="18">scale</td>
+<td class="xl65">渐变尺寸伸缩动画效果</td>
+</tr>
+<tr>
+<td class="xl65" height="18">translate</td>
+<td class="xl65">画面转换位置移动动画效果</td>
+</tr>
+<tr>
+<td class="xl65" height="18">rotate</td>
+<td class="xl65" style="text-align: left;">画面转移旋转动画效果</td>
+</tr>
+</tbody>
+</table>
+<p style="text-align: left;">&nbsp;</p>
+<p style="text-align: left;">&nbsp;</p>
+<p style="text-align: left;">&nbsp;</p>
+<p style="text-align: left;">&nbsp;</p>
+<p style="text-align: left;">&nbsp;</p>
+<p style="text-align: left;">JavaCode中</p>
+<table style="width: 413px; float: left;" border="0" cellspacing="0" cellpadding="0"><colgroup><col width="191"> <col width="222"> </colgroup>
+<tbody>
+<tr>
+<td class="xl65" width="191" height="18">AlphaAnimation</td>
+<td class="xl65" width="222">渐变透明度动画效果</td>
+</tr>
+<tr>
+<td class="xl65" height="18">ScaleAnimation</td>
+<td class="xl65">渐变尺寸伸缩动画效果</td>
+</tr>
+<tr>
+<td class="xl65" height="18">TranslateAnimation</td>
+<td class="xl65">画面转换位置移动动画效果</td>
+</tr>
+<tr>
+<td class="xl65" height="18">RotateAnimation</td>
+<td>画面转移旋转动画效果</td>
+</tr>
+</tbody>
+</table>
+<p style="text-align: left;">&nbsp;</p>
+<p style="text-align: left;">&nbsp;</p>
+<p style="text-align: left;">&nbsp;</p>
+<p style="text-align: left;">&nbsp;</p>
+<p style="text-align: left;"><strong>&nbsp;2.Android动画模式</strong></p>
+<p style="text-align: left;">Animation主要有两种动画模式：</p>
+<p style="text-align: left;">一种是tweened animation(渐变动画)</p>
+<table style="width: 413px; float: left;" border="0" cellspacing="0" cellpadding="0"><colgroup><col width="191"> <col width="222"> </colgroup>
+<tbody>
+<tr>
+<td class="xl65" width="191" height="18">XML中</td>
+<td class="xl65" width="222">JavaCode</td>
+</tr>
+<tr>
+<td class="xl65" height="18">alpha</td>
+<td class="xl65">AlphaAnimation</td>
+</tr>
+<tr>
+<td class="xl65" height="18">scale</td>
+<td class="xl65">ScaleAnimation</td>
+</tr>
+</tbody>
+</table>
+<p style="text-align: left;">&nbsp;</p>
+<p style="text-align: left;">&nbsp;</p>
+<p style="text-align: left;">&nbsp;</p>
+<p style="text-align: left;"><span class="Apple-converted-space">一种是frame by frame(画面转换动画)</span><strong><strong><span><span class="Apple-converted-space"><span class="Apple-converted-space"> <br></span></span></span></strong></strong></p>
+<table style="width: 413px; float: left;" border="0" cellspacing="0" cellpadding="0"><colgroup><col width="191"> <col width="222"> </colgroup>
+<tbody>
+<tr>
+<td class="xl65" width="191" height="18">XML中</td>
+<td class="xl65" width="222">JavaCode</td>
+
+
+
+
+
+
+
+</tr>
+<tr>
+<td class="xl65" height="18">translate</td>
+<td class="xl65">TranslateAnimation</td>
+
+
+
+
+
+
+
+</tr>
+<tr>
+<td class="xl65" height="18">rotate</td>
+<td class="xl65">RotateAnimation</td>
+
+
+
+
+
+
+
+</tr>
+
+
+
+
+
+
+
+</tbody>
+
+
+
+
+
+
+
+</table>
+<p style="text-align: left;">&nbsp;</p>
+<p style="text-align: left;">&nbsp;</p>
+<p style="text-align: left;">&nbsp;</p>
+<p style="text-align: left;"><strong><strong><span><span class="Apple-converted-space"><span class="Apple-converted-space">3.<strong>如何</strong><strong>在XML文件中定义动画</strong></span></span></span></strong></strong></p>
+<p style="text-align: left;"><span class="Apple-converted-space"><span class="Apple-converted-space">步骤如下：</span></span></p>
+<p style="text-align: left;"><span class="Apple-converted-space"><span class="Apple-converted-space">①新建 Android 项目</span></span></p>
+<p style="text-align: left;"><span class="Apple-converted-space"><span class="Apple-converted-space"><span class="Apple-converted-space"><span class="Apple-converted-space">②</span></span>在res目录中新建anim文件夹</span></span></p>
+<p style="text-align: left;"><span class="Apple-converted-space"><span class="Apple-converted-space"><span class="Apple-converted-space"><span class="Apple-converted-space">③</span></span>在anim目录中新建一个my_anim.xml(注意文件名小写)</span></span></p>
+<p style="text-align: left;"><span class="Apple-converted-space"><span class="Apple-converted-space"><span class="Apple-converted-space"><span class="Apple-converted-space">④在 <span class="Apple-converted-space"><span class="Apple-converted-space">my_anim.xml</span></span> </span></span>加入动画代码</span></span></p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./【Android 基础】Animation 动画介绍和实现 - J灬叶小超 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span style="color: #0000ff;">&lt;?</span><span style="color: #ff00ff;">xml version="1.0" encoding="utf-8"</span><span style="color: #0000ff;">?&gt;</span>
+<span style="color: #0000ff;">&lt;</span><span style="color: #800000;">set </span><span style="color: #ff0000;">xmlns:android</span><span style="color: #0000ff;">="http://schemas.android.com/apk/res/android"</span> <span style="color: #0000ff;">&gt;</span>
+    <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">alpha </span><span style="color: #0000ff;">/&gt;</span>
+    <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">scale </span><span style="color: #0000ff;">/&gt;</span>
+    <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">translate </span><span style="color: #0000ff;">/&gt;</span>
+    <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">rotate </span><span style="color: #0000ff;">/&gt;</span>
+<span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">set</span><span style="color: #0000ff;">&gt;</span></pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./【Android 基础】Animation 动画介绍和实现 - J灬叶小超 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p>&nbsp;</p>
+<p style="text-align: left;"><span class="Apple-converted-space"><span class="Apple-converted-space"><span style="font-family: 微软雅黑;"><span><span><strong>4.Android动画解析</strong></span><span><strong>--XML</strong></span></span></span></span></span></p>
+<p style="text-align: left;"><span class="Apple-converted-space"><span class="Apple-converted-space"><span style="font-family: 微软雅黑;"><br></span><span><span style="font-family: 微软雅黑;"><span>4.1 alpha 渐变透明度动画效果<br></span></span></span></span></span></p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./【Android 基础】Animation 动画介绍和实现 - J灬叶小超 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span style="color: #0000ff;">&lt;?</span><span style="color: #ff00ff;">xml version="1.0" encoding="utf-8"</span><span style="color: #0000ff;">?&gt;</span>
+<span style="color: #0000ff;">&lt;</span><span style="color: #800000;">set </span><span style="color: #ff0000;">xmlns:android</span><span style="color: #0000ff;">="http://schemas.android.com/apk/res/android"</span> <span style="color: #0000ff;">&gt;</span>
+    <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">alpha
+        </span><span style="color: #ff0000;">android:duration</span><span style="color: #0000ff;">="1000"</span><span style="color: #ff0000;">
+        android:fromAlpha</span><span style="color: #0000ff;">="0.0"</span><span style="color: #ff0000;">
+        android:toAlpha</span><span style="color: #0000ff;">="1.0"</span> <span style="color: #0000ff;">/&gt;</span>
+    <span style="color: #008000;">&lt;!--</span><span style="color: #008000;">
+     透明度控制动画效果 alpha
+        浮点型值：
+            fromAlpha 属性为动画起始时透明度
+            toAlpha   属性为动画结束时透明度
+            说明: 
+                0.0表示完全透明
+                1.0表示完全不透明
+            以上值取0.0-1.0之间的float数据类型的数字
+        
+        长整型值：
+            duration  属性为动画持续时间
+            说明:     
+                时间以毫秒为单位
+
+    </span><span style="color: #008000;">--&gt;</span>
+<span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">set</span><span style="color: #0000ff;">&gt;</span></pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./【Android 基础】Animation 动画介绍和实现 - J灬叶小超 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p style="text-align: left;">&nbsp;</p>
+<p style="text-align: left;"><span class="Apple-converted-space"><span class="Apple-converted-space">4.2 scale 渐变尺寸伸缩动画效果</span></span></p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./【Android 基础】Animation 动画介绍和实现 - J灬叶小超 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span style="color: #0000ff;">&lt;?</span><span style="color: #ff00ff;">xml version="1.0" encoding="utf-8"</span><span style="color: #0000ff;">?&gt;</span>
+<span style="color: #0000ff;">&lt;</span><span style="color: #800000;">set </span><span style="color: #ff0000;">xmlns:android</span><span style="color: #0000ff;">="http://schemas.android.com/apk/res/android"</span> <span style="color: #0000ff;">&gt;</span>
+
+    <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">scale
+        </span><span style="color: #ff0000;">android:duration</span><span style="color: #0000ff;">="1000"</span><span style="color: #ff0000;">
+        android:fillAfter</span><span style="color: #0000ff;">="false"</span><span style="color: #ff0000;">
+        android:fromXScale</span><span style="color: #0000ff;">="0.0"</span><span style="color: #ff0000;">
+        android:fromYScale</span><span style="color: #0000ff;">="0.0"</span><span style="color: #ff0000;">
+        android:interpolator</span><span style="color: #0000ff;">="@android:anim/accelerate_decelerate_interpolator"</span><span style="color: #ff0000;">
+        android:pivotX</span><span style="color: #0000ff;">="50%"</span><span style="color: #ff0000;">
+        android:pivotY</span><span style="color: #0000ff;">="50%"</span><span style="color: #ff0000;">
+        android:toXScale</span><span style="color: #0000ff;">="1.4"</span><span style="color: #ff0000;">
+        android:toYScale</span><span style="color: #0000ff;">="1.4"</span> <span style="color: #0000ff;">/&gt;</span>
+
+<span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">set</span><span style="color: #0000ff;">&gt;</span><span style="color: #008000;">&lt;!--</span><span style="color: #008000;">
+     尺寸伸缩动画效果 scale
+       属性：interpolator 指定一个动画的插入器
+        在我试验过程中，使用android.res.anim中的资源时候发现
+        有三种动画插入器:
+            accelerate_decelerate_interpolator  加速-减速 动画插入器
+            accelerate_interpolator        加速-动画插入器
+            decelerate_interpolator        减速- 动画插入器
+        其他的属于特定的动画效果
+      浮点型值：
+         
+            fromXScale 属性为动画起始时 X坐标上的伸缩尺寸    
+            toXScale   属性为动画结束时 X坐标上的伸缩尺寸     
+        
+            fromYScale 属性为动画起始时Y坐标上的伸缩尺寸    
+            toYScale   属性为动画结束时Y坐标上的伸缩尺寸    
+        
+            说明:
+                 以上四种属性值    
+    
+                    0.0表示收缩到没有 
+                    1.0表示正常无伸缩     
+                    值小于1.0表示收缩  
+                    值大于1.0表示放大
+        
+            pivotX     属性为动画相对于物件的X坐标的开始位置
+            pivotY     属性为动画相对于物件的Y坐标的开始位置
+        
+            说明:
+                    以上两个属性值 从0%-100%中取值
+                    50%为物件的X或Y方向坐标上的中点位置
+        
+        长整型值：
+            duration  属性为动画持续时间
+            说明:   时间以毫秒为单位
+
+        布尔型值:
+            fillAfter 属性 当设置为true ，该动画转化在动画结束后被应用
+
+</span><span style="color: #008000;">--&gt;</span></pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./【Android 基础】Animation 动画介绍和实现 - J灬叶小超 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p>&nbsp;</p>
+<p>4.3 translate 画面转换位置移动动画效果</p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./【Android 基础】Animation 动画介绍和实现 - J灬叶小超 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span style="color: #0000ff;">&lt;?</span><span style="color: #ff00ff;">xml version="1.0" encoding="utf-8"</span><span style="color: #0000ff;">?&gt;</span>
+<span style="color: #0000ff;">&lt;</span><span style="color: #800000;">set </span><span style="color: #ff0000;">xmlns:android</span><span style="color: #0000ff;">="http://schemas.android.com/apk/res/android"</span> <span style="color: #0000ff;">&gt;</span>
+
+    <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">translate
+        </span><span style="color: #ff0000;">android:duration</span><span style="color: #0000ff;">="2000"</span><span style="color: #ff0000;">
+        android:fromXDelta</span><span style="color: #0000ff;">="30"</span><span style="color: #ff0000;">
+        android:fromYDelta</span><span style="color: #0000ff;">="30"</span><span style="color: #ff0000;">
+        android:toXDelta</span><span style="color: #0000ff;">="-80"</span><span style="color: #ff0000;">
+        android:toYDelta</span><span style="color: #0000ff;">="300"</span> <span style="color: #0000ff;">/&gt;</span>
+    <span style="color: #008000;">&lt;!--</span><span style="color: #008000;">
+     translate 位置转移动画效果
+        整型值:
+            fromXDelta 属性为动画起始时 X坐标上的位置    
+            toXDelta   属性为动画结束时 X坐标上的位置
+            fromYDelta 属性为动画起始时 Y坐标上的位置
+            toYDelta   属性为动画结束时 Y坐标上的位置
+            注意:
+                     没有指定fromXType toXType fromYType toYType 时候，
+                     默认是以自己为相对参照物             
+        长整型值：
+            duration  属性为动画持续时间
+            说明:   时间以毫秒为单位
+
+
+
+    </span><span style="color: #008000;">--&gt;</span>
+
+<span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">set</span><span style="color: #0000ff;">&gt;</span></pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./【Android 基础】Animation 动画介绍和实现 - J灬叶小超 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p>&nbsp;</p>
+<p>4.4 rotate 画面转移旋转动画效果</p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./【Android 基础】Animation 动画介绍和实现 - J灬叶小超 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span style="color: #0000ff;">&lt;?</span><span style="color: #ff00ff;">xml version="1.0" encoding="utf-8"</span><span style="color: #0000ff;">?&gt;</span>
+<span style="color: #0000ff;">&lt;</span><span style="color: #800000;">set </span><span style="color: #ff0000;">xmlns:android</span><span style="color: #0000ff;">="http://schemas.android.com/apk/res/android"</span> <span style="color: #0000ff;">&gt;</span>
+
+    <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">rotate
+        </span><span style="color: #ff0000;">android:duration</span><span style="color: #0000ff;">="3000"</span><span style="color: #ff0000;">
+        android:fromDegrees</span><span style="color: #0000ff;">="0"</span><span style="color: #ff0000;">
+        android:interpolator</span><span style="color: #0000ff;">="@android:anim/accelerate_decelerate_interpolator"</span><span style="color: #ff0000;">
+        android:pivotX</span><span style="color: #0000ff;">="50%"</span><span style="color: #ff0000;">
+        android:pivotY</span><span style="color: #0000ff;">="50%"</span><span style="color: #ff0000;">
+        android:toDegrees</span><span style="color: #0000ff;">="+350"</span> <span style="color: #0000ff;">/&gt;</span>
+    <span style="color: #008000;">&lt;!--</span><span style="color: #008000;">
+     rotate 旋转动画效果
+       属性：interpolator 指定一个动画的插入器
+             在我试验过程中，使用android.res.anim中的资源时候发现
+             有三种动画插入器:
+                accelerate_decelerate_interpolator   加速-减速 动画插入器
+                accelerate_interpolator               加速-动画插入器
+                decelerate_interpolator               减速- 动画插入器
+             其他的属于特定的动画效果
+                           
+       浮点数型值:
+            fromDegrees 属性为动画起始时物件的角度    
+            toDegrees   属性为动画结束时物件旋转的角度 可以大于360度   
+
+        
+            说明:
+                     当角度为负数——表示逆时针旋转
+                     当角度为正数——表示顺时针旋转              
+                     (负数from——to正数:顺时针旋转)   
+                     (负数from——to负数:逆时针旋转) 
+                     (正数from——to正数:顺时针旋转) 
+                     (正数from——to负数:逆时针旋转)       
+
+            pivotX     属性为动画相对于物件的X坐标的开始位置
+            pivotY     属性为动画相对于物件的Y坐标的开始位置
+                
+            说明:        以上两个属性值 从0%-100%中取值
+                         50%为物件的X或Y方向坐标上的中点位置
+
+        长整型值：
+            duration  属性为动画持续时间
+            说明:       时间以毫秒为单位
+
+    </span><span style="color: #008000;">--&gt;</span>
+
+<span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">set</span><span style="color: #0000ff;">&gt;</span></pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./【Android 基础】Animation 动画介绍和实现 - J灬叶小超 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p>&nbsp;</p>
+<p>5.<strong>如何使用XML中的动画效果</strong></p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./【Android 基础】Animation 动画介绍和实现 - J灬叶小超 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span style="color: #0000ff;">public</span> <span style="color: #0000ff;">static</span> Animation loadAnimation (Context context, <span style="color: #0000ff;">int</span><span style="color: #000000;"> id) 
+
+</span><span style="color: #008000;">//</span><span style="color: #008000;">第一个参数Context为程序的上下文    
+</span><span style="color: #008000;">//</span><span style="color: #008000;">第二个参数id为动画XML文件的引用
+</span><span style="color: #008000;">//</span><span style="color: #008000;">例子：</span>
+myAnimation= AnimationUtils.loadAnimation(<span style="color: #0000ff;">this</span><span style="color: #000000;">,R.anim.my_anim);
+</span><span style="color: #008000;">//</span><span style="color: #008000;">使用AnimationUtils类的静态方法loadAnimation()来加载XML中的动画XML文件</span></pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./【Android 基础】Animation 动画介绍和实现 - J灬叶小超 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p>&nbsp;</p>
+<p>6.<strong>如何使用XML中的动画效果</strong></p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./【Android 基础】Animation 动画介绍和实现 - J灬叶小超 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span style="color: #008000;">//</span><span style="color: #008000;">在代码中定义 动画实例对象</span>
+<span style="color: #0000ff;">private</span><span style="color: #000000;"> Animation myAnimation_Alpha;
+</span><span style="color: #0000ff;">private</span><span style="color: #000000;"> Animation myAnimation_Scale;
+</span><span style="color: #0000ff;">private</span><span style="color: #000000;"> Animation myAnimation_Translate;
+</span><span style="color: #0000ff;">private</span><span style="color: #000000;"> Animation myAnimation_Rotate;
+    
+</span><span style="color: #008000;">//</span><span style="color: #008000;">根据各自的构造方法来初始化一个实例对象</span>
+myAnimation_Alpha=<span style="color: #0000ff;">new</span> AlphaAnimation(0.1f, 1.0f<span style="color: #000000;">);
+
+myAnimation_Scale </span>=<span style="color: #0000ff;">new</span> ScaleAnimation(0.0f, 1.4f, 0.0f, 1.4f<span style="color: #000000;">,
+             Animation.RELATIVE_TO_SELF, </span>0.5f, Animation.RELATIVE_TO_SELF, 0.5f<span style="color: #000000;">);
+
+myAnimation_Translate</span>=<span style="color: #0000ff;">new</span> TranslateAnimation(30.0f, -80.0f, 30.0f, 300.0f<span style="color: #000000;">);
+
+myAnimation_Rotate</span>=<span style="color: #0000ff;">new</span> RotateAnimation(0.0f, +350.0f<span style="color: #000000;">,
+               Animation.RELATIVE_TO_SELF,</span>0.5f,Animation.RELATIVE_TO_SELF, 0.5f);</pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./【Android 基础】Animation 动画介绍和实现 - J灬叶小超 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p>&nbsp;</p>
+<p><strong>7.Android动画解析--JavaCode</strong></p>
+<p><strong>7.1 AlphaAnimation</strong></p>
+<p>①　AlphaAnimation类对象定义</p>
+<div class="cnblogs_code">
+<pre><span style="color: #0000ff;">private</span> AlphaAnimation myAnimation_Alpha</pre>
+</div>
+<p>②　AlphaAnimation类对象构造</p>
+<div class="cnblogs_code">
+<pre><span style="color: #008000;">//</span><span style="color: #008000;">第一个参数fromAlpha为 动画开始时候透明度
+</span><span style="color: #008000;">//</span><span style="color: #008000;">第二个参数toAlpha为 动画结束时候透明度</span>
+AlphaAnimation(<span style="color: #0000ff;">float</span> fromAlpha, <span style="color: #0000ff;">float</span><span style="color: #000000;"> toAlpha) 
+</span><span style="color: #008000;">//</span><span style="color: #008000;">说明:0.0表示完全透明,1.0表示完全不透明</span>
+myAnimation_Alpha=<span style="color: #0000ff;">new</span> AlphaAnimation(0.1f, 1.0f);</pre>
+</div>
+<p>③　设置动画持续时间</p>
+<div class="cnblogs_code">
+<pre><span style="color: #008000;">//</span><span style="color: #008000;">设置时间持续时间为 5000毫秒</span>
+myAnimation_Alpha.setDuration(5000);</pre>
+</div>
+<p>&nbsp;</p>
+<p><strong>7.2 ScaleAnimation</strong></p>
+<p>①　ScaleAnimation类对象定义</p>
+<div class="cnblogs_code">
+<pre><span style="color: #0000ff;">private</span> AlphaAnimation myAnimation_Alpha;</pre>
+</div>
+<p>②　ScaleAnimation类对象构造</p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./【Android 基础】Animation 动画介绍和实现 - J灬叶小超 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre>ScaleAnimation(<span style="color: #0000ff;">float</span> fromX, <span style="color: #0000ff;">float</span> toX, <span style="color: #0000ff;">float</span> fromY, <span style="color: #0000ff;">float</span><span style="color: #000000;"> toY,
+           </span><span style="color: #0000ff;">int</span> pivotXType, <span style="color: #0000ff;">float</span> pivotXValue, <span style="color: #0000ff;">int</span> pivotYType, <span style="color: #0000ff;">float</span><span style="color: #000000;"> pivotYValue) 
+
+</span><span style="color: #008000;">//</span><span style="color: #008000;">第一个参数fromX为动画起始时 X坐标上的伸缩尺寸    
+</span><span style="color: #008000;">//</span><span style="color: #008000;">第二个参数toX为动画结束时 X坐标上的伸缩尺寸     
+</span><span style="color: #008000;">//</span><span style="color: #008000;">第三个参数fromY为动画起始时Y坐标上的伸缩尺寸    
+</span><span style="color: #008000;">//</span><span style="color: #008000;">第四个参数toY为动画结束时Y坐标上的伸缩尺寸  </span><span style="color: #008000;">
+/*</span><span style="color: #008000;">说明:
+                    以上四种属性值    
+                    0.0表示收缩到没有 
+                    1.0表示正常无伸缩     
+                    值小于1.0表示收缩  
+                    值大于1.0表示放大
+</span><span style="color: #008000;">*/</span>
+<span style="color: #008000;">//</span><span style="color: #008000;">第五个参数pivotXType为动画在X轴相对于物件位置类型  
+</span><span style="color: #008000;">//</span><span style="color: #008000;">第六个参数pivotXValue为动画相对于物件的X坐标的开始位置
+</span><span style="color: #008000;">//</span><span style="color: #008000;">第七个参数pivotXType为动画在Y轴相对于物件位置类型   
+</span><span style="color: #008000;">//</span><span style="color: #008000;">第八个参数pivotYValue为动画相对于物件的Y坐标的开始位置</span>
+myAnimation_Scale =<span style="color: #0000ff;">new</span> ScaleAnimation(0.0f, 1.4f, 0.0f, 1.4f<span style="color: #000000;">,
+             Animation.RELATIVE_TO_SELF, </span>0.5f, Animation.RELATIVE_TO_SELF, 0.5f);</pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./【Android 基础】Animation 动画介绍和实现 - J灬叶小超 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p>③　设置动画持续时间</p>
+<div class="cnblogs_code">
+<pre><span style="color: #008000;">//</span><span style="color: #008000;">设置时间持续时间为 700毫秒</span>
+myAnimation_Scale.setDuration(700);</pre>
+</div>
+<p>&nbsp;</p>
+<p><strong>7.3 TranslateAnimation</strong></p>
+<p>①　TranslateAnimation类对象定义</p>
+<div class="cnblogs_code">
+<pre><span style="color: #0000ff;">private</span> AlphaAnimation myAnimation_Alpha;</pre>
+</div>
+<p>②　TranslateAnimation类对象构造</p>
+<div class="cnblogs_code">
+<pre><span style="color: #008000;">//</span><span style="color: #008000;">第一个参数fromXDelta为动画起始时 X坐标上的移动位置    
+</span><span style="color: #008000;">//</span><span style="color: #008000;">第二个参数toXDelta为动画结束时 X坐标上的移动位置      
+</span><span style="color: #008000;">//</span><span style="color: #008000;">第三个参数fromYDelta为动画起始时Y坐标上的移动位置     
+</span><span style="color: #008000;">//</span><span style="color: #008000;">第四个参数toYDelta为动画结束时Y坐标上的移动位置</span>
+TranslateAnimation(<span style="color: #0000ff;">float</span> fromXDelta, <span style="color: #0000ff;">float</span> toXDelta,<span style="color: #0000ff;">float</span> fromYDelta, <span style="color: #0000ff;">float</span> toYDelta) </pre>
+</div>
+<p>③　设置动画持续时间</p>
+<div class="cnblogs_code">
+<pre><span style="color: #008000;">//</span><span style="color: #008000;">设置时间持续时间为 2000毫秒</span>
+myAnimation_Translate.setDuration(2000);</pre>
+</div>
+<p>&nbsp;</p>
+<p><strong>7.4 RotateAnimation</strong></p>
+<p>①　RotateAnimation类对象定义</p>
+<div class="cnblogs_code">
+<pre><span style="color: #0000ff;">private</span> AlphaAnimation myAnimation_Alpha;</pre>
+</div>
+<p>②　RotateAnimation类对象构造</p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./【Android 基础】Animation 动画介绍和实现 - J灬叶小超 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre>RotateAnimation(<span style="color: #0000ff;">float</span> fromDegrees, <span style="color: #0000ff;">float</span> toDegrees,<span style="color: #0000ff;">int</span> pivotXType, <span style="color: #0000ff;">float</span> pivotXValue, <span style="color: #0000ff;">int</span> pivotYType, <span style="color: #0000ff;">float</span><span style="color: #000000;"> pivotYValue)
+            
+</span><span style="color: #008000;">//</span><span style="color: #008000;">第一个参数fromDegrees为动画起始时的旋转角度    
+</span><span style="color: #008000;">//</span><span style="color: #008000;">第二个参数toDegrees为动画旋转到的角度   
+</span><span style="color: #008000;">//</span><span style="color: #008000;">第三个参数pivotXType为动画在X轴相对于物件位置类型  
+</span><span style="color: #008000;">//</span><span style="color: #008000;">第四个参数pivotXValue为动画相对于物件的X坐标的开始位置
+</span><span style="color: #008000;">//</span><span style="color: #008000;">第五个参数pivotXType为动画在Y轴相对于物件位置类型   
+</span><span style="color: #008000;">//</span><span style="color: #008000;">第六个参数pivotYValue为动画相对于物件的Y坐标的开始位置</span>
+myAnimation_Rotate=<span style="color: #0000ff;">new</span> RotateAnimation(0.0f, +350.0f,Animation.RELATIVE_TO_SELF,0.5f,Animation.RELATIVE_TO_SELF, 0.5f);</pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./【Android 基础】Animation 动画介绍和实现 - J灬叶小超 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p>②　RotateAnimation类对象构造</p>
+<div class="cnblogs_code">
+<pre><span style="color: #008000;">//</span><span style="color: #008000;">设置时间持续时间为 3000毫秒</span>
+myAnimation_Rotate.setDuration(3000);</pre>
+</div>
+<p>&nbsp;</p>
+<p>8.<strong><span>如何使用Java代码中的动画效果</span></strong></p>
+<p>&nbsp;使用从View父类继承过来的方法startAnimation()来为View或是子类View等等添加一个动画效果</p>
+<div class="cnblogs_code">
+<pre><span style="color: #0000ff;">public</span> <span style="color: #0000ff;">void</span> startAnimation (Animation animation)</pre>
+</div>
+<p>&nbsp;</p>
+<p><strong>9.还是来个栗子吧</strong></p>
+<p><strong>9.1 使用XML文件方式</strong></p>
+<p>①效果图如下：</p>
+<p><img src="./【Android 基础】Animation 动画介绍和实现 - J灬叶小超 - 博客园_files/131505152611034.gif" alt=""></p>
+<p>②在XML文件中定义动画，前面已提及</p>
+<p>③主界面布局，这没啥好说的，很简单 o(∩_∩)o</p>
+<p>④主界面逻辑代码，主要就是这个了，控制动画显示</p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./【Android 基础】Animation 动画介绍和实现 - J灬叶小超 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span style="color: #0000ff;">package</span><span style="color: #000000;"> com.yanis.base;
+
+</span><span style="color: #0000ff;">import</span><span style="color: #000000;"> android.app.Activity;
+</span><span style="color: #0000ff;">import</span><span style="color: #000000;"> android.os.Bundle;
+</span><span style="color: #0000ff;">import</span><span style="color: #000000;"> android.view.View;
+</span><span style="color: #0000ff;">import</span><span style="color: #000000;"> android.view.View.OnClickListener;
+</span><span style="color: #0000ff;">import</span><span style="color: #000000;"> android.view.animation.Animation;
+</span><span style="color: #0000ff;">import</span><span style="color: #000000;"> android.view.animation.AnimationUtils;
+</span><span style="color: #0000ff;">import</span><span style="color: #000000;"> android.widget.Button;
+</span><span style="color: #0000ff;">import</span><span style="color: #000000;"> android.widget.ImageView;
+
+</span><span style="color: #0000ff;">public</span> <span style="color: #0000ff;">class</span> AnimationActivity <span style="color: #0000ff;">extends</span> Activity <span style="color: #0000ff;">implements</span><span style="color: #000000;"> OnClickListener {
+    </span><span style="color: #0000ff;">private</span><span style="color: #000000;"> ImageView imgPic;
+    </span><span style="color: #0000ff;">private</span><span style="color: #000000;"> Button btnAlpha, btnScale, btnTranslate, btnRotate;
+    </span><span style="color: #0000ff;">private</span><span style="color: #000000;"> Animation myAnimation;
+
+    @Override
+    </span><span style="color: #0000ff;">protected</span> <span style="color: #0000ff;">void</span><span style="color: #000000;"> onCreate(Bundle savedInstanceState) {
+        </span><span style="color: #0000ff;">super</span><span style="color: #000000;">.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_animation);
+
+        intiView();
+
+        initData();
+    }
+
+    </span><span style="color: #008000;">/**</span><span style="color: #008000;">
+     * 初始化组件
+     </span><span style="color: #008000;">*/</span>
+    <span style="color: #0000ff;">private</span> <span style="color: #0000ff;">void</span><span style="color: #000000;"> intiView() {
+        imgPic </span>=<span style="color: #000000;"> (ImageView) findViewById(R.id.imgPic);
+        btnAlpha </span>=<span style="color: #000000;"> (Button) findViewById(R.id.btnAlpha);
+        btnScale </span>=<span style="color: #000000;"> (Button) findViewById(R.id.btnScale);
+        btnTranslate </span>=<span style="color: #000000;"> (Button) findViewById(R.id.btnTranslate);
+        btnRotate </span>=<span style="color: #000000;"> (Button) findViewById(R.id.btnRotate);
+    }
+
+    </span><span style="color: #008000;">/**</span><span style="color: #008000;">
+     * 初始化数据
+     </span><span style="color: #008000;">*/</span>
+    <span style="color: #0000ff;">private</span> <span style="color: #0000ff;">void</span><span style="color: #000000;"> initData() {
+        btnAlpha.setOnClickListener(</span><span style="color: #0000ff;">this</span><span style="color: #000000;">);
+        btnScale.setOnClickListener(</span><span style="color: #0000ff;">this</span><span style="color: #000000;">);
+        btnTranslate.setOnClickListener(</span><span style="color: #0000ff;">this</span><span style="color: #000000;">);
+        btnRotate.setOnClickListener(</span><span style="color: #0000ff;">this</span><span style="color: #000000;">);
+    }
+
+    @Override
+    </span><span style="color: #0000ff;">public</span> <span style="color: #0000ff;">void</span><span style="color: #000000;"> onClick(View v) {
+        </span><span style="color: #0000ff;">switch</span><span style="color: #000000;"> (v.getId()) {
+        </span><span style="color: #0000ff;">case</span><span style="color: #000000;"> R.id.btnAlpha:
+            </span><span style="color: #008000;">/**</span><span style="color: #008000;">
+             * 使用XML中的动画效果 第一个参数Context为程序的上下文 第二个参数id为动画XML文件的引用
+             </span><span style="color: #008000;">*/</span><span style="color: #000000;">
+            myAnimation </span>= AnimationUtils.loadAnimation(<span style="color: #0000ff;">this</span><span style="color: #000000;">, R.anim.alpha_anim);
+            imgPic.startAnimation(myAnimation);
+            </span><span style="color: #0000ff;">break</span><span style="color: #000000;">;
+
+        </span><span style="color: #0000ff;">case</span><span style="color: #000000;"> R.id.btnScale:
+            myAnimation </span>= AnimationUtils.loadAnimation(<span style="color: #0000ff;">this</span><span style="color: #000000;">, R.anim.scale_anim);
+            imgPic.startAnimation(myAnimation);
+            </span><span style="color: #0000ff;">break</span><span style="color: #000000;">;
+
+        </span><span style="color: #0000ff;">case</span><span style="color: #000000;"> R.id.btnTranslate:
+            myAnimation </span>= AnimationUtils.loadAnimation(<span style="color: #0000ff;">this</span><span style="color: #000000;">,
+                    R.anim.translate_anim);
+            imgPic.startAnimation(myAnimation);
+            </span><span style="color: #0000ff;">break</span><span style="color: #000000;">;
+
+        </span><span style="color: #0000ff;">case</span><span style="color: #000000;"> R.id.btnRotate:
+            myAnimation </span>=<span style="color: #000000;"> AnimationUtils
+                    .loadAnimation(</span><span style="color: #0000ff;">this</span><span style="color: #000000;">, R.anim.rotate_anim);
+            imgPic.startAnimation(myAnimation);
+            </span><span style="color: #0000ff;">break</span><span style="color: #000000;">;
+
+        }
+    }
+}</span></pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./【Android 基础】Animation 动画介绍和实现 - J灬叶小超 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p>&nbsp;</p>
+<p><strong>9.2 使用Java代码方式</strong></p>
+<p>博文 <span style="color: #0000ff;"><a href="http://www.cnblogs.com/yc-755909659/p/4171732.html" target="_blank"><span style="color: #0000ff;">游戏开发基础（动画）</span></a></span> 中有实例说明，此处不再赘述。</p>
+<p>&nbsp;</p>
+<p><strong>10. 用Animation-list实现逐帧动画</strong></p>
+<p>栗子效果图如下：</p>
+<p><img src="./【Android 基础】Animation 动画介绍和实现 - J灬叶小超 - 博客园_files/131651006514314.gif" alt=""></p>
+<p>步骤如下：</p>
+<p>①在res/drawable目录添加图片素材</p>
+<p><img src="./【Android 基础】Animation 动画介绍和实现 - J灬叶小超 - 博客园_files/131650478088738.jpg" alt=""></p>
+<p>②在drawable文件夹中添加动画Animation-list帧布局文件</p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./【Android 基础】Animation 动画介绍和实现 - J灬叶小超 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span style="color: #0000ff;">&lt;?</span><span style="color: #ff00ff;">xml version="1.0" encoding="utf-8"</span><span style="color: #0000ff;">?&gt;</span>
+<span style="color: #008000;">&lt;!--</span><span style="color: #008000;">
+    根标签为animation-list，其中oneshot代表着是否只展示一遍，设置为false会不停的循环播放动画  
+    根标签下，通过item标签对动画中的每一个图片进行声明  
+    android:duration 表示展示所用的该图片的时间长度  
+
+</span><span style="color: #008000;">--&gt;</span>
+<span style="color: #0000ff;">&lt;</span><span style="color: #800000;">animation-list </span><span style="color: #ff0000;">xmlns:android</span><span style="color: #0000ff;">="http://schemas.android.com/apk/res/android"</span><span style="color: #ff0000;">
+    android:oneshot</span><span style="color: #0000ff;">="false"</span> <span style="color: #0000ff;">&gt;</span>
+    <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">item
+        </span><span style="color: #ff0000;">android:drawable</span><span style="color: #0000ff;">="@drawable/cmmusic_progress_1"</span><span style="color: #ff0000;">
+        android:duration</span><span style="color: #0000ff;">="150"</span><span style="color: #0000ff;">&gt;</span>
+    <span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">item</span><span style="color: #0000ff;">&gt;</span>
+    <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">item
+        </span><span style="color: #ff0000;">android:drawable</span><span style="color: #0000ff;">="@drawable/cmmusic_progress_2"</span><span style="color: #ff0000;">
+        android:duration</span><span style="color: #0000ff;">="150"</span><span style="color: #0000ff;">&gt;</span>
+    <span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">item</span><span style="color: #0000ff;">&gt;</span>
+    <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">item
+        </span><span style="color: #ff0000;">android:drawable</span><span style="color: #0000ff;">="@drawable/cmmusic_progress_3"</span><span style="color: #ff0000;">
+        android:duration</span><span style="color: #0000ff;">="150"</span><span style="color: #0000ff;">&gt;</span>
+    <span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">item</span><span style="color: #0000ff;">&gt;</span>
+    <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">item
+        </span><span style="color: #ff0000;">android:drawable</span><span style="color: #0000ff;">="@drawable/cmmusic_progress_4"</span><span style="color: #ff0000;">
+        android:duration</span><span style="color: #0000ff;">="150"</span><span style="color: #0000ff;">&gt;</span>
+    <span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">item</span><span style="color: #0000ff;">&gt;</span>
+    <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">item
+        </span><span style="color: #ff0000;">android:drawable</span><span style="color: #0000ff;">="@drawable/cmmusic_progress_5"</span><span style="color: #ff0000;">
+        android:duration</span><span style="color: #0000ff;">="150"</span><span style="color: #0000ff;">&gt;</span>
+    <span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">item</span><span style="color: #0000ff;">&gt;</span>
+    <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">item
+        </span><span style="color: #ff0000;">android:drawable</span><span style="color: #0000ff;">="@drawable/cmmusic_progress_6"</span><span style="color: #ff0000;">
+        android:duration</span><span style="color: #0000ff;">="150"</span><span style="color: #0000ff;">&gt;</span>
+    <span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">item</span><span style="color: #0000ff;">&gt;</span>
+    <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">item
+        </span><span style="color: #ff0000;">android:drawable</span><span style="color: #0000ff;">="@drawable/cmmusic_progress_7"</span><span style="color: #ff0000;">
+        android:duration</span><span style="color: #0000ff;">="150"</span><span style="color: #0000ff;">&gt;</span>
+    <span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">item</span><span style="color: #0000ff;">&gt;</span>
+    <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">item
+        </span><span style="color: #ff0000;">android:drawable</span><span style="color: #0000ff;">="@drawable/cmmusic_progress_8"</span><span style="color: #ff0000;">
+        android:duration</span><span style="color: #0000ff;">="150"</span><span style="color: #0000ff;">&gt;</span>
+    <span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">item</span><span style="color: #0000ff;">&gt;</span>
+<span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">animation-list</span><span style="color: #0000ff;">&gt;</span></pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./【Android 基础】Animation 动画介绍和实现 - J灬叶小超 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p>③主界面页面布局设置，太简单，不赘述了</p>
+<p>④主界面代码如下：</p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./【Android 基础】Animation 动画介绍和实现 - J灬叶小超 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span style="color: #0000ff;">package</span><span style="color: #000000;"> com.yanis.base;
+
+</span><span style="color: #0000ff;">import</span><span style="color: #000000;"> android.app.Activity;
+</span><span style="color: #0000ff;">import</span><span style="color: #000000;"> android.graphics.drawable.AnimationDrawable;
+</span><span style="color: #0000ff;">import</span><span style="color: #000000;"> android.os.Bundle;
+</span><span style="color: #0000ff;">import</span><span style="color: #000000;"> android.view.View;
+</span><span style="color: #0000ff;">import</span><span style="color: #000000;"> android.view.View.OnClickListener;
+</span><span style="color: #0000ff;">import</span><span style="color: #000000;"> android.widget.Button;
+</span><span style="color: #0000ff;">import</span><span style="color: #000000;"> android.widget.ImageView;
+
+</span><span style="color: #0000ff;">public</span> <span style="color: #0000ff;">class</span> AnimationActivity <span style="color: #0000ff;">extends</span> Activity <span style="color: #0000ff;">implements</span><span style="color: #000000;"> OnClickListener {
+    </span><span style="color: #0000ff;">private</span><span style="color: #000000;"> ImageView imgPic;
+    </span><span style="color: #0000ff;">private</span><span style="color: #000000;"> Button btnStart, btnStop;
+    </span><span style="color: #0000ff;">private</span><span style="color: #000000;"> AnimationDrawable animationDrawable;
+
+    @Override
+    </span><span style="color: #0000ff;">protected</span> <span style="color: #0000ff;">void</span><span style="color: #000000;"> onCreate(Bundle savedInstanceState) {
+        </span><span style="color: #0000ff;">super</span><span style="color: #000000;">.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_animation);
+
+        intiView();
+
+        initData();
+    }
+
+    </span><span style="color: #008000;">/**</span><span style="color: #008000;">
+     * 初始化组件
+     </span><span style="color: #008000;">*/</span>
+    <span style="color: #0000ff;">private</span> <span style="color: #0000ff;">void</span><span style="color: #000000;"> intiView() {
+        imgPic </span>=<span style="color: #000000;"> (ImageView) findViewById(R.id.imgPic);
+        btnStart </span>=<span style="color: #000000;"> (Button) findViewById(R.id.btnStart);
+        btnStop </span>=<span style="color: #000000;"> (Button) findViewById(R.id.btnStop);
+    }
+
+    </span><span style="color: #008000;">/**</span><span style="color: #008000;">
+     * 初始化数据
+     </span><span style="color: #008000;">*/</span>
+    <span style="color: #0000ff;">private</span> <span style="color: #0000ff;">void</span><span style="color: #000000;"> initData() {
+        btnStart.setOnClickListener(</span><span style="color: #0000ff;">this</span><span style="color: #000000;">);
+        btnStop.setOnClickListener(</span><span style="color: #0000ff;">this</span><span style="color: #000000;">);
+        </span><span style="color: #008000;">//</span><span style="color: #008000;">Sets a drawable as the content of this ImageView.</span>
+<span style="color: #000000;">        imgPic.setImageResource(R.drawable.loading_anim);
+        </span><span style="color: #008000;">//</span><span style="color: #008000;">给动画资源赋值</span>
+        animationDrawable =<span style="color: #000000;"> (AnimationDrawable) imgPic.getDrawable();
+    }
+
+    @Override
+    </span><span style="color: #0000ff;">public</span> <span style="color: #0000ff;">void</span><span style="color: #000000;"> onClick(View v) {
+        </span><span style="color: #0000ff;">switch</span><span style="color: #000000;"> (v.getId()) {
+        </span><span style="color: #0000ff;">case</span><span style="color: #000000;"> R.id.btnStart:
+            animationDrawable.start();</span><span style="color: #008000;">//</span><span style="color: #008000;">开始</span>
+            <span style="color: #0000ff;">break</span><span style="color: #000000;">;
+
+        </span><span style="color: #0000ff;">case</span><span style="color: #000000;"> R.id.btnStop: 
+             animationDrawable.stop(); </span><span style="color: #008000;">//</span><span style="color: #008000;">停止</span>
+            <span style="color: #0000ff;">break</span><span style="color: #000000;">;
+
+        }
+    }
+}</span></pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./【Android 基础】Animation 动画介绍和实现 - J灬叶小超 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p>&nbsp;</p>
+<p>本文地址：<a id="Editor_Edit_hlEntryLink" title="view: 【Android 基础】Animation 动画介绍和实现" href="./【Android 基础】Animation 动画介绍和实现 - J灬叶小超 - 博客园_files/【Android 基础】Animation 动画介绍和实现 - J灬叶小超 - 博客园.html" target="_blank">http://www.cnblogs.com/yc-755909659/p/4290114.html</a></p></div><div id="MySignature"></div>
+<div class="clear"></div>
+<div id="blog_post_info_block">
+<div id="BlogPostCategory">分类: <a href="http://www.cnblogs.com/yc-755909659/category/472285.html">【Android 开发】</a></div>
+<div id="EntryTag">标签: <a href="http://www.cnblogs.com/yc-755909659/tag/Android%20%E5%9F%BA%E7%A1%80/">Android 基础</a></div>
+<div id="blog_post_info"><div id="green_channel">
+<a href="javascript:void(0);" id="green_channel_digg" onclick="DiggIt(4290114,cb_blogId,1);green_channel_success(this,&#39;谢谢推荐！&#39;);">好文要顶</a>
+<a id="green_channel_follow" onclick="c_follow();" href="javascript:void(0);">关注我</a>
+<a id="green_channel_favorite" onclick="AddToWz(cb_entryId);return false;" href="javascript:void(0);">收藏该文</a><a id="green_channel_contact" href="http://msg.cnblogs.com/send/J%E7%81%AC%E5%8F%B6%E5%B0%8F%E8%B6%85" target="_blank">联系我</a>
+<a id="green_channel_weibo" href="javascript:void(0);" title="分享至新浪微博" onclick="ShareToTsina()"><img src="./【Android 基础】Animation 动画介绍和实现 - J灬叶小超 - 博客园_files/icon_weibo_24.png" alt=""></a>
+<a id="green_channel_wechat" href="javascript:void(0);" title="分享至微信" onclick="shareOnWechat()"><img src="./【Android 基础】Animation 动画介绍和实现 - J灬叶小超 - 博客园_files/wechat.png" alt=""></a>
+</div>
+<div id="author_profile">
+<div id="author_profile_info" class="author_profile_info">
+<a href="http://home.cnblogs.com/u/yc-755909659/" target="_blank"><img src="./【Android 基础】Animation 动画介绍和实现 - J灬叶小超 - 博客园_files/20150130112045.png" class="author_avatar" alt=""></a>
+<div id="author_profile_detail" class="author_profile_info">
+<a href="http://home.cnblogs.com/u/yc-755909659/">J灬叶小超</a><br>
+<a href="http://home.cnblogs.com/u/yc-755909659/followees">关注 - 1</a><br>
+<a href="http://home.cnblogs.com/u/yc-755909659/followers">粉丝 - 112</a>
+</div>
+</div>
+<div class="clear"></div>
+<div id="author_profile_honor"></div>
+<div id="author_profile_follow">
+    <a href="javascript:void(0);" onclick="c_follow();return false;">+加关注</a>
+</div>
+</div>
+<div id="div_digg">										
+    <div class="diggit" onclick="votePost(4290114,&#39;Digg&#39;)">
+        <span class="diggnum" id="digg_count">1</span>
+    </div>
+	<div class="buryit" onclick="votePost(4290114,&#39;Bury&#39;)"> 
+		<span class="burynum" id="bury_count">0</span>
+	</div>
+	<div class="clear"></div>	
+	<div class="diggword" id="digg_tips">
+    (请您对文章做出评价)
+    </div>	
+</div>
+</div>
+<div class="clear"></div>
+<div id="post_next_prev"><a href="http://www.cnblogs.com/yc-755909659/p/4288864.html" class="p_n_p_prefix">« </a> 上一篇：<a href="http://www.cnblogs.com/yc-755909659/p/4288864.html" title="发布于2015-02-12 21:56">【Android UI设计与开发】7.底部菜单栏（四）PopupWindow 实现显示仿腾讯新闻底部弹出菜单</a><br><a href="http://www.cnblogs.com/yc-755909659/p/4290784.html" class="p_n_p_prefix">» </a> 下一篇：<a href="http://www.cnblogs.com/yc-755909659/p/4290784.html" title="发布于2015-02-27 11:07">【Android UI设计与开发】8.顶部标题栏（一）ActionBar 奥义·详解</a><br></div>
+</div>
+
+
+		</div>
+		<div class="postDesc">posted @ <span id="post-date">2015-02-13 15:06</span> <a href="http://www.cnblogs.com/yc-755909659/">J灬叶小超</a> 阅读(<span id="post_view_count">1208</span>) 评论(<span id="post_comment_count">0</span>)  <a href="http://i.cnblogs.com/EditPosts.aspx?postid=4290114" rel="nofollow">编辑</a> <a href="http://www.cnblogs.com/yc-755909659/p/4290114.html#" onclick="AddToWz(4290114);return false;">收藏</a></div>
+	</div>
+	<script type="text/javascript">var allowComments=true,isLogined=false,cb_blogId=104901,cb_entryId=4290114,cb_blogApp=currentBlogApp,cb_blogUserGuid='da93814b-2623-e111-b422-842b2b196315',cb_entryCreatedDate='2015/2/13 15:06:00';loadViewCount(cb_entryId);</script>
+	
+</div><!--end: topics 文章、评论容器-->
+</div><a name="!comments"></a><div id="blog-comments-placeholder"></div><script type="text/javascript">var commentManager = new blogCommentManager();commentManager.renderComments(0);</script>
+<div id="comment_form" class="commentform">
+<a name="commentform"></a>
+<div id="divCommentShow"></div>
+<div id="comment_nav"><span id="span_refresh_tips"></span><a href="javascript:void(0);" id="lnk_RefreshComments" onclick="return RefreshCommentList();">刷新评论</a><a href="http://www.cnblogs.com/yc-755909659/p/4290114.html#" onclick="return RefreshPage();">刷新页面</a><a href="http://www.cnblogs.com/yc-755909659/p/4290114.html#top">返回顶部</a></div>
+<div id="comment_form_container"><div class="login_tips">注册用户登录后才能发表评论，请 <a rel="nofollow" href="javascript:void(0);" class="underline" onclick="return login(&#39;commentform&#39;);">登录</a> 或 <a rel="nofollow" href="javascript:void(0);" class="underline" onclick="return register();">注册</a>，<a href="http://www.cnblogs.com/">访问</a>网站首页。</div></div>
+<div class="ad_text_commentbox" id="ad_text_under_commentbox"></div>
+<div id="site_nav_under"><a href="http://www.ucancode.com/index.htm" target="_blank">【推荐】50万行VC++源码: 大型组态工控、电力仿真CAD与GIS源码库</a><br><a href="http://www.rongcloud.cn/" target="_blank">【推荐】融云即时通讯云－专注为 App 开发者提供IM云服务</a><br><a href="https://www.jpush.cn/" target="_blank">【推荐】极光推送-20多万开发者都在用的推送服务平台，免费接入体验</a><br><a href="http://click.aliyun.com/m/1328/" target="_blank">【专享】阿里云9折优惠码：bky758</a><br></div>
+<div id="opt_under_post"></div>
+<script type="text/javascript">
+    var enableGoogleAd = canShowAdsense(); 
+    fixPostBodyFormat();
+</script>
+<div id="google_ad_c1" class="c_ad_block"><a href="http://job.cnblogs.com/" target="_blank"><img width="300" height="250" src="./【Android 基础】Animation 动画介绍和实现 - J灬叶小超 - 博客园_files/job_300_250.jpg" alt=""></a></div>
+<div id="under_post_news"><div class="itnews c_ad_block"><b>最新IT新闻</b>:<br> ·  <a href="http://news.cnblogs.com/n/531111/" target="_blank">猎户座流星雨将至 22日凌晨至黎明观测最佳</a><br> ·  <a href="http://news.cnblogs.com/n/531110/" target="_blank">滴滴出行发布试驾业务</a><br> ·  <a href="http://news.cnblogs.com/n/531109/" target="_blank">说“来电显示成本为零”的都不是专家</a><br> ·  <a href="http://news.cnblogs.com/n/531108/" target="_blank">美国宣布对个人无人飞机进行注册备案制</a><br> ·  <a href="http://news.cnblogs.com/n/531107/" target="_blank">传西部数据将独自收购SanDisk 美光不再参与</a><br>» <a href="http://news.cnblogs.com/" title="IT新闻" target="_blank">更多新闻...</a></div></div>
+<div id="google_ad_c2" class="c_ad_block"><a href="http://e.jikexueyuan.com/html5.html?hmsr=cnb_banner_html5_09.14" target="_blank"><img width="468" height="60" src="./【Android 基础】Animation 动画介绍和实现 - J灬叶小超 - 博客园_files/24442-20150914101329570-406117032.jpg" alt=""></a></div>
+<div id="under_post_kb"><div class="itnews c_ad_block" id="kb_block"><b>最新知识库文章</b>:<br><div id="kb_recent"> ·  <a href="http://kb.cnblogs.com/page/529677/" target="_blank">持续集成是什么？</a><br> ·  <a href="http://kb.cnblogs.com/page/530389/" target="_blank">人，技术与流程</a><br> ·  <a href="http://kb.cnblogs.com/page/530044/" target="_blank">HTTPS背后的加密算法</a><br> ·  <a href="http://kb.cnblogs.com/page/529285/" target="_blank">下一代云计算模式：Docker正掀起个性化商业革命</a><br> ·  <a href="http://kb.cnblogs.com/page/528495/" target="_blank">野生程序员的故事</a><br></div>» <a href="http://kb.cnblogs.com/" target="_blank">更多知识库文章...</a></div></div>
+<div id="HistoryToday" class="c_ad_block"></div>
+<script type="text/javascript">
+$(function () {
+    loadNewsAndKb();
+    loadBlogSignature();
+    LoadPostInfoBlock(cb_blogId, cb_entryId, cb_blogApp, cb_blogUserGuid);
+    GetPrevNextPost(cb_entryId, cb_blogId, cb_entryCreatedDate);
+    loadOptUnderPost();
+    GetHistoryToday(cb_blogId, cb_blogApp, cb_entryCreatedDate);
+    setTimeout(function () { incrementViewCount(cb_entryId); }, 200);
+});
+</script>
+</div>
+
+	</div><!--end: forFlow -->
+	</div><!--end: mainContent 主体内容容器-->
+
+	<div id="sideBar">
+		<div id="sideBarMain">
+			
+<!--done-->
+<div class="newsItem">
+<h3 class="catListTitle">公告</h3>
+	<div id="blog-news"><div>
+  <img border="0" src="./【Android 基础】Animation 动画介绍和实现 - J灬叶小超 - 博客园_files/o_f17e5fb5c9ea15ce0b80f653b5003af33b87b2c7.jpg" alt="" title="" style="width:90%;">
+  <a href="http://wpa.qq.com/msgrd?v=3&uin=755909659&site=qq&menu=yes" target="_blank">    
+<img border="0" style="width:90%;" title="点击这里给我发消息" alt="点击这里给我发消息" src="./【Android 基础】Animation 动画介绍和实现 - J灬叶小超 - 博客园_files/pa"></a>
+</div><div id="profile_block">昵称：<a href="http://home.cnblogs.com/u/yc-755909659/">J灬叶小超</a><br>园龄：<a href="http://home.cnblogs.com/u/yc-755909659/" title="入园时间：2011-12-10">3年10个月</a><br>粉丝：<a href="http://home.cnblogs.com/u/yc-755909659/followers/">112</a><br>关注：<a href="http://home.cnblogs.com/u/yc-755909659/followees/">1</a><div id="p_b_follow"><a href="javascript:void(0);" onclick="cnblogs.UserManager.FollowBlogger(&#39;da93814b-2623-e111-b422-842b2b196315&#39;)">+加关注</a></div></div></div><script type="text/javascript">loadBlogNews();</script>
+</div>
+
+			<div id="blog-calendar" style=""><table id="blogCalendar" class="Cal" cellspacing="0" cellpadding="0" title="日历">
+	<tbody><tr><td colspan="7"><table class="CalTitle" cellspacing="0">
+		<tbody><tr><td class="CalNextPrev"><a href="javascript:void(0);" onclick="loadBlogCalendar(&#39;2015/09/01&#39;);return false;">&lt;</a></td><td align="center">2015年10月</td><td class="CalNextPrev" align="right"><a href="javascript:void(0);" onclick="loadBlogCalendar(&#39;2015/11/01&#39;);return false;">&gt;</a></td></tr>
+	</tbody></table></td></tr><tr><th class="CalDayHeader" align="center" abbr="日" scope="col">日</th><th class="CalDayHeader" align="center" abbr="一" scope="col">一</th><th class="CalDayHeader" align="center" abbr="二" scope="col">二</th><th class="CalDayHeader" align="center" abbr="三" scope="col">三</th><th class="CalDayHeader" align="center" abbr="四" scope="col">四</th><th class="CalDayHeader" align="center" abbr="五" scope="col">五</th><th class="CalDayHeader" align="center" abbr="六" scope="col">六</th></tr><tr><td class="CalOtherMonthDay" align="center">27</td><td class="CalOtherMonthDay" align="center">28</td><td class="CalOtherMonthDay" align="center">29</td><td class="CalOtherMonthDay" align="center">30</td><td align="center">1</td><td align="center">2</td><td class="CalWeekendDay" align="center">3</td></tr><tr><td class="CalWeekendDay" align="center">4</td><td align="center">5</td><td align="center">6</td><td align="center">7</td><td align="center">8</td><td align="center">9</td><td class="CalWeekendDay" align="center">10</td></tr><tr><td class="CalWeekendDay" align="center">11</td><td align="center">12</td><td align="center">13</td><td align="center">14</td><td align="center">15</td><td align="center"><a href="http://www.cnblogs.com/yc-755909659/archive/2015/10/16.html"><u>16</u></a></td><td class="CalWeekendDay" align="center">17</td></tr><tr><td class="CalWeekendDay" align="center">18</td><td align="center">19</td><td class="CalTodayDay" align="center">20</td><td align="center">21</td><td align="center">22</td><td align="center">23</td><td class="CalWeekendDay" align="center">24</td></tr><tr><td class="CalWeekendDay" align="center">25</td><td align="center">26</td><td align="center">27</td><td align="center">28</td><td align="center">29</td><td align="center">30</td><td class="CalWeekendDay" align="center">31</td></tr><tr><td class="CalOtherMonthDay" align="center">1</td><td class="CalOtherMonthDay" align="center">2</td><td class="CalOtherMonthDay" align="center">3</td><td class="CalOtherMonthDay" align="center">4</td><td class="CalOtherMonthDay" align="center">5</td><td class="CalOtherMonthDay" align="center">6</td><td class="CalOtherMonthDay" align="center">7</td></tr>
+</tbody></table></div><script type="text/javascript">loadBlogDefaultCalendar();</script>
+			
+			<div id="leftcontentcontainer">
+				<div id="blog-sidecolumn"><div id="sidebar_search" class="sidebar-block">
+<div id="sidebar_search" class="mySearch">
+<h3 class="catListTitle">搜索</h3>
+<div id="sidebar_search_box">
+<div id="widget_my_zzk" class="div_my_zzk"><input type="text" id="q" onkeydown="return zzk_go_enter(event);" class="input_my_zzk">&nbsp;<input onclick="zzk_go()" type="button" value="找找看" id="btnZzk" class="btn_my_zzk"></div>
+<div id="widget_my_google" class="div_my_zzk"><input type="text" name="google_q" id="google_q" onkeydown="return google_go_enter(event)" class="input_my_zzk">&nbsp;<input onclick="google_go()" type="button" value="谷歌搜索" class="btn_my_zzk"></div>
+</div>
+</div>
+
+</div><div id="sidebar_shortcut" class="sidebar-block">
+<div class="catListLink">
+<h3 class="catListTitle">常用链接</h3>
+<ul>
+<li><a href="http://www.cnblogs.com/yc-755909659/p/" title="我的博客的随笔列表">我的随笔</a></li><li><a href="http://www.cnblogs.com/yc-755909659/MyComments.html" title="我发表过的评论列表">我的评论</a></li><li><a href="http://www.cnblogs.com/yc-755909659/OtherPosts.html" title="我评论过的随笔列表">我的参与</a></li><li><a href="http://www.cnblogs.com/yc-755909659/RecentComments.html" title="我的博客的评论列表">最新评论</a></li><li><a href="http://www.cnblogs.com/yc-755909659/tag/" title="我的博客的标签列表">我的标签</a></li>
+<li><a id="itemListLink" onclick="this.blur();WarpClass(&#39;itemListLink&#39;, &#39;itemListLin_con&#39;);return false;" href="http://www.cnblogs.com/yc-755909659/p/4290114.html#">更多链接</a></li>
+</ul>
+<div id="itemListLin_con" style="display:none;">
+<ul>
+
+</ul>
+</div>
+</div></div><div id="sidebar_recentposts" class="sidebar-block">
+<div class="catListEssay">
+<h3 class="catListTitle">最新随笔</h3>
+<ul>
+<li><a href="http://www.cnblogs.com/yc-755909659/p/4884576.html">1. 【ASP.NET 插件】zyUpload的HTML5上传插件</a></li><li><a href="http://www.cnblogs.com/yc-755909659/p/4493194.html">2. 图文解释XCode常用快捷键的使用</a></li><li><a href="http://www.cnblogs.com/yc-755909659/p/4698969.html">3. Windows下的Objective-C集成开发环境搭建（IDE）</a></li><li><a href="http://www.cnblogs.com/yc-755909659/p/4556066.html">4. 移动端访问PC端网页时跳转到对应的移动端网页</a></li><li><a href="http://www.cnblogs.com/yc-755909659/p/4536475.html">5. 【转】30多年程序员生涯经验总结</a></li><li><a href="http://www.cnblogs.com/yc-755909659/p/4501245.html">6. 【算法】网上看到的5个问题</a></li><li><a href="http://www.cnblogs.com/yc-755909659/p/4503669.html">7. 【ASP.NET 进阶】定时执行任务</a></li><li><a href="http://www.cnblogs.com/yc-755909659/p/4499954.html">8. 【ASP.NET 基础】Page类和回调技术</a></li><li><a href="http://www.cnblogs.com/yc-755909659/p/4499855.html">9. 【ASP.NET 基础】表单和控件</a></li><li><a href="http://www.cnblogs.com/yc-755909659/p/4499780.html">10. 【ASP.NET 基础】ASP.NET内置对象</a></li>
+</ul>
+</div>
+</div><div id="sidebar_toptags" class="sidebar-block">
+<div class="catListTag">
+<h3 class="catListTitle">我的标签</h3>
+<ul>
+<li><a href="http://www.cnblogs.com/yc-755909659/tag/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0%E3%80%8AAndroid%E6%B8%B8%E6%88%8F%E7%BC%96%E7%A8%8B%E4%B9%8B%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E3%80%8B/">读书笔记《Android游戏编程之从零开始》</a>(20)</li><li><a href="http://www.cnblogs.com/yc-755909659/tag/JavaScript/">JavaScript</a>(17)</li><li><a href="http://www.cnblogs.com/yc-755909659/tag/Android%20Demo/">Android Demo</a>(12)</li><li><a href="http://www.cnblogs.com/yc-755909659/tag/Android%20UI%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%BC%80%E5%8F%91/">Android UI设计与开发</a>(10)</li><li><a href="http://www.cnblogs.com/yc-755909659/tag/ASP.NET%20%E8%BF%9B%E9%98%B6/">ASP.NET 进阶</a>(10)</li><li><a href="http://www.cnblogs.com/yc-755909659/tag/Ext.Net%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Ext.Net学习笔记</a>(7)</li><li><a href="http://www.cnblogs.com/yc-755909659/tag/ASP.NET%20%E5%9F%BA%E7%A1%80/">ASP.NET 基础</a>(7)</li><li><a href="http://www.cnblogs.com/yc-755909659/tag/%E7%A8%8B%E5%BA%8F%E4%BA%BA%E7%94%9F/">程序人生</a>(5)</li><li><a href="http://www.cnblogs.com/yc-755909659/tag/WCF/">WCF</a>(5)</li><li><a href="http://www.cnblogs.com/yc-755909659/tag/%E7%AE%97%E6%B3%95/">算法</a>(4)</li><li><a href="http://www.cnblogs.com/yc-755909659/tag/">更多</a></li>
+</ul>
+</div></div><div id="sidebar_categories">
+<div id="sidebar_postcategory" class="catListPostCategory sidebar-block">
+<h3 class="catListTitle">随笔分类<span style="font-size:11px;font-weight:normal">(138)</span></h3>
+
+<ul>
+
+<li><a id="CatList_LinkList_0_Link_0" href="http://www.cnblogs.com/yc-755909659/category/472285.html">【Android 开发】(53)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_1" href="http://www.cnblogs.com/yc-755909659/category/472286.html">【ASP.NET 开发】(30)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_2" href="http://www.cnblogs.com/yc-755909659/category/583120.html">【C# 笔记】(5)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_3" href="http://www.cnblogs.com/yc-755909659/category/583114.html">【Ext.Net 开发】(7)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_4" href="http://www.cnblogs.com/yc-755909659/category/688635.html">【iOS 开发】</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_5" href="http://www.cnblogs.com/yc-755909659/category/658540.html">【Java 开发】</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_6" href="http://www.cnblogs.com/yc-755909659/category/719093.html">【Objective-C】(1)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_7" href="http://www.cnblogs.com/yc-755909659/category/472290.html">【SqlServer】(5)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_8" href="http://www.cnblogs.com/yc-755909659/category/472287.html">【Web前端】(21)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_9" href="http://www.cnblogs.com/yc-755909659/category/472288.html">【Windows OS操作】(3)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_10" href="http://www.cnblogs.com/yc-755909659/category/472289.html">【程序人生】(5)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_11" href="http://www.cnblogs.com/yc-755909659/category/644972.html">【软件使用】(4)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_12" href="http://www.cnblogs.com/yc-755909659/category/614504.html">【算法与数据结构】(4)</a> </li>
+
+</ul>
+
+</div>
+
+</div><div id="sidebar_scorerank" class="sidebar-block">
+<div class="catListBlogRank">
+<h3 class="catListTitle">积分与排名</h3>
+<ul>
+	<li class="liScore">
+		积分 -	156939
+	</li>
+	<li class="liRank">
+		排名 -	999
+	</li>
+</ul>
+</div>
+
+
+</div><div id="sidebar_recentcomments" class="sidebar-block"><div id="recent_comments_wrap">
+<div class="catListComment">
+<h3 class="catListTitle">最新评论</h3>
+
+	<div id="RecentCommentsBlock"><ul>
+    <li class="recent_comment_title"><a href="http://www.cnblogs.com/yc-755909659/p/4884576.html#3286648">1. Re:【ASP.NET 插件】zyUpload的HTML5上传插件</a></li>
+    <li class="recent_comment_body">好像上传图片的文件名不能包含中文</li>
+    <li class="recent_comment_author">--南宇辰</li>
+    <li class="recent_comment_title"><a href="http://www.cnblogs.com/yc-755909659/p/4884576.html#3286150">2. Re:【ASP.NET 插件】zyUpload的HTML5上传插件</a></li>
+    <li class="recent_comment_body">@J灬叶小超看到了，就是视频的话，文件太大就GG了，小的还好，这个用起来挺方便的...</li>
+    <li class="recent_comment_author">--MIss_豪</li>
+    <li class="recent_comment_title"><a href="http://www.cnblogs.com/yc-755909659/p/4453068.html#3286106">3. Re:【ASP.NET 进阶】无刷新上传图片之一：利用一般处理程序</a></li>
+    <li class="recent_comment_body">您好，我在创业中，已经拿到投资，游戏产品已经完成，现在在处理游戏细节，等细节处理完成后做上线前的准备。<br>现在在招人，请问有兴趣加入么，我的QQ55763</li>
+    <li class="recent_comment_author">--phbrother001</li>
+    <li class="recent_comment_title"><a href="http://www.cnblogs.com/yc-755909659/p/4884576.html#3285878">4. Re:【ASP.NET 插件】zyUpload的HTML5上传插件</a></li>
+    <li class="recent_comment_body">@MIss_豪都可以，改下上传代码就可以了...</li>
+    <li class="recent_comment_author">--J灬叶小超</li>
+    <li class="recent_comment_title"><a href="http://www.cnblogs.com/yc-755909659/p/4884576.html#3285874">5. Re:【ASP.NET 插件】zyUpload的HTML5上传插件</a></li>
+    <li class="recent_comment_body">只能上传图片么？</li>
+    <li class="recent_comment_author">--MIss_豪</li>
+</ul>
+</div>
+</div>
+</div></div><div id="sidebar_topviewedposts" class="sidebar-block"><div id="topview_posts_wrap">
+<div class="catListView">
+<h3 class="catListTitle">阅读排行榜</h3>
+	<div id="TopViewPostsBlock"><ul><li><a href="http://www.cnblogs.com/yc-755909659/archive/2012/08/18/2645404.html">1. 【Android问题】解决eclipse不识别Android手机的问题(20021)</a></li><li><a href="http://www.cnblogs.com/yc-755909659/archive/2012/12/25/2832673.html">2. C# 的时间戳转换(15288)</a></li><li><a href="http://www.cnblogs.com/yc-755909659/p/3753626.html">3. 【软件使用】GitHub使用教程for Eclipse(12494)</a></li><li><a href="http://www.cnblogs.com/yc-755909659/archive/2012/04/04/2431962.html">4. 【Android Demo】自定义Activity的标题栏(Titlebar)(12275)</a></li><li><a href="http://www.cnblogs.com/yc-755909659/p/3605214.html">5. 手机网页Html代码实现（解决显示页面很小的问题）(11837)</a></li><li><a href="http://www.cnblogs.com/yc-755909659/archive/2013/04/17/3026409.html">6. 【ASP.NET 基础】图片上传和显示(10325)</a></li><li><a href="http://www.cnblogs.com/yc-755909659/archive/2013/03/20/2971557.html">7. 【Android问题】Android导入一个工程时提示 Invalid project description的解决方法(10232)</a></li><li><a href="http://www.cnblogs.com/yc-755909659/archive/2012/04/01/2429363.html">8. 【Android Demo】让Android支持自定义的ttf字体(9990)</a></li><li><a href="http://www.cnblogs.com/yc-755909659/p/3596039.html">9. 【ASP.NET 进阶】TreeView控件学习(8546)</a></li><li><a href="http://www.cnblogs.com/yc-755909659/p/4290784.html">10. 【Android UI设计与开发】8.顶部标题栏（一）ActionBar 奥义·详解(7410)</a></li></ul></div>
+</div>
+</div></div><div id="sidebar_topcommentedposts" class="sidebar-block"><div id="topfeedback_posts_wrap">
+<div class="catListFeedback">
+<h3 class="catListTitle">评论排行榜</h3>
+	<div id="TopFeedbackPostsBlock"><ul><li><a href="http://www.cnblogs.com/yc-755909659/archive/2012/07/10/2584703.html">1. WCF初见之SQL数据库的增删改查(16)</a></li><li><a href="http://www.cnblogs.com/yc-755909659/archive/2012/10/10/2718713.html">2. 一个日期下拉菜单的实现(12)</a></li><li><a href="http://www.cnblogs.com/yc-755909659/p/3753626.html">3. 【软件使用】GitHub使用教程for Eclipse(7)</a></li><li><a href="http://www.cnblogs.com/yc-755909659/p/4195436.html">4. 【Android 我的博客APP】1.抓取博客首页文章列表内容——网页数据抓取(7)</a></li><li><a href="http://www.cnblogs.com/yc-755909659/archive/2012/04/04/2431962.html">5. 【Android Demo】自定义Activity的标题栏(Titlebar)(6)</a></li><li><a href="http://www.cnblogs.com/yc-755909659/archive/2012/06/12/2546279.html">6. WCF初见之SQL数据库的连接和查询(5)</a></li><li><a href="http://www.cnblogs.com/yc-755909659/archive/2013/04/17/3026409.html">7. 【ASP.NET 基础】图片上传和显示(5)</a></li><li><a href="http://www.cnblogs.com/yc-755909659/p/3779631.html">8. 【分享】60行代码：Javascript 写的俄罗斯方块游戏(5)</a></li><li><a href="http://www.cnblogs.com/yc-755909659/p/4163943.html">9. 【读书笔记《Android游戏编程之从零开始》】14.游戏开发基础（Bitmap 位图的渲染与操作）(4)</a></li><li><a href="http://www.cnblogs.com/yc-755909659/p/4073415.html">10. 【Android问题】解决 Android SDK下载和更新失败“Connection to https://dl-ssl.google.com refused”的问题(4)</a></li></ul></div>
+</div>
+</div></div><div id="sidebar_topdiggedposts" class="sidebar-block"><div id="topdigg_posts_wrap">
+<div class="catListView">
+<h3 class="catListTitle">推荐排行榜</h3>
+<div id="TopDiggPostsBlock"><ul><li><a href="http://www.cnblogs.com/yc-755909659/archive/2012/09/25/2701903.html">1. 有利于SEO的DIV+CSS的命名规则(7)</a></li><li><a href="http://www.cnblogs.com/yc-755909659/p/3753626.html">2. 【软件使用】GitHub使用教程for Eclipse(7)</a></li><li><a href="http://www.cnblogs.com/yc-755909659/archive/2012/06/12/2546279.html">3. WCF初见之SQL数据库的连接和查询(6)</a></li><li><a href="http://www.cnblogs.com/yc-755909659/archive/2013/04/23/3038274.html">4. jQuery打造动态渐变按钮(6)</a></li><li><a href="http://www.cnblogs.com/yc-755909659/archive/2012/04/04/2431962.html">5. 【Android Demo】自定义Activity的标题栏(Titlebar)(5)</a></li><li><a href="http://www.cnblogs.com/yc-755909659/p/3753355.html">6. 【软件使用】GitHub使用教程for VS2012(5)</a></li><li><a href="http://www.cnblogs.com/yc-755909659/p/3640801.html">7. 无刷新预览所选择的图片(4)</a></li><li><a href="http://www.cnblogs.com/yc-755909659/archive/2012/07/10/2584703.html">8. WCF初见之SQL数据库的增删改查(4)</a></li><li><a href="http://www.cnblogs.com/yc-755909659/archive/2012/06/26/2563134.html">9. WCF初见之Salt+Hash加密(4)</a></li><li><a href="http://www.cnblogs.com/yc-755909659/archive/2013/04/17/3026409.html">10. 【ASP.NET 基础】图片上传和显示(4)</a></li></ul></div>
+</div></div></div></div><script type="text/javascript">loadBlogSideColumn();</script>
+			</div>
+			
+		</div><!--end: sideBarMain -->
+	</div><!--end: sideBar 侧边栏容器 -->
+	<div class="clear"></div>
+	</div><!--end: main -->
+	<div class="clear"></div>
+	<div id="footer">
+		
+<!--done-->
+Copyright ©2015 J灬叶小超
+	</div><!--end: footer -->
+</div><!--end: home 自定义的最大容器 -->
+<!--PageEndHtml Block Begin-->
+<!--GoUP DIV-->
+<div id="goup" style="position: fixed; display: block; z-index: 9; bottom: 2%; right: 2%;"><a><img src="./【Android 基础】Animation 动画介绍和实现 - J灬叶小超 - 博客园_files/o_to_Top.png" style="width: 72px; display: inline;"></a></div> 
+
+<script type="text/javascript" src="./【Android 基础】Animation 动画介绍和实现 - J灬叶小超 - 博客园_files/goup.js"></script>
+<script type="text/javascript" src="./【Android 基础】Animation 动画介绍和实现 - J灬叶小超 - 博客园_files/ycblog.js"></script>
+<script type="text/javascript" src="./【Android 基础】Animation 动画介绍和实现 - J灬叶小超 - 博客园_files/honehone_clock.js"></script>
+<!--PageEndHtml Block End-->
+
+
+</body></html>
